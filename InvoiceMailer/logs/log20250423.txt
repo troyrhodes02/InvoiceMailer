@@ -1,0 +1,39 @@
+2025-04-23 15:48:16.754 -05:00 [INF] Starting InvoiceMailer application
+2025-04-23 15:48:16.822 -05:00 [INF] Application InvoiceMailer running in Development environment
+2025-04-23 15:48:16.825 -05:00 [INF] InvoiceMailer application completed successfully
+2025-04-23 16:00:18.532 -05:00 [INF] Starting InvoiceMailer application
+2025-04-23 16:00:18.589 -05:00 [INF] Application InvoiceMailer running in Development environment
+2025-04-23 16:00:18.596 -05:00 [INF] Starting invoice scan in folder: /Users/troyrhodes/InvoiceMailer/InvoiceMailer/invoices
+2025-04-23 16:00:18.599 -05:00 [INF] Found invoice file: Quarterly Report INV54321.pdf with key: INV54321
+2025-04-23 16:00:18.600 -05:00 [INF] Found invoice file: INV12345.pdf with key: INV12345
+2025-04-23 16:00:18.600 -05:00 [INF] Found invoice file: April2025_INV67890.xlsx with key: INV67890
+2025-04-23 16:00:18.600 -05:00 [INF] Found invoice file: invoice_inv09876_lowercase.xlsx with key: inv09876
+2025-04-23 16:00:18.601 -05:00 [INF] Invoice scan completed
+2025-04-23 16:00:18.601 -05:00 [INF] Found 4 invoice files with valid keys
+2025-04-23 16:00:18.603 -05:00 [INF] InvoiceMailer application completed successfully
+2025-04-23 16:01:34.099 -05:00 [INF] Starting InvoiceMailer application
+2025-04-23 16:01:34.184 -05:00 [INF] Application InvoiceMailer running in Development environment
+2025-04-23 16:01:34.196 -05:00 [INF] Starting invoice scan in folder: /Users/troyrhodes/InvoiceMailer/InvoiceMailer/invoices
+2025-04-23 16:01:34.201 -05:00 [INF] Found invoice file: Quarterly Report INV54321.pdf with key: INV54321
+2025-04-23 16:01:34.202 -05:00 [INF] Found invoice file: INV12345.pdf with key: INV12345
+2025-04-23 16:01:34.202 -05:00 [INF] Found invoice file: April2025_INV67890.xlsx with key: INV67890
+2025-04-23 16:01:34.202 -05:00 [INF] Found invoice file: invoice_inv09876_lowercase.xlsx with key: inv09876
+2025-04-23 16:01:34.203 -05:00 [INF] Invoice scan completed
+2025-04-23 16:01:34.203 -05:00 [INF] Found 4 invoice files with valid keys
+2025-04-23 16:01:34.207 -05:00 [INF] InvoiceMailer application completed successfully
+2025-04-23 17:26:32.643 -05:00 [INF] Starting InvoiceMailer application
+2025-04-23 17:26:32.703 -05:00 [INF] Application InvoiceMailer running in Development environment
+2025-04-23 17:26:32.708 -05:00 [INF] Loading recipients from: /Users/troyrhodes/InvoiceMailer/InvoiceMailer/recipients.csv
+2025-04-23 17:26:32.710 -05:00 [INF] Loaded 4 recipient mappings
+2025-04-23 17:26:32.716 -05:00 [INF] Starting invoice scan in folder: /Users/troyrhodes/InvoiceMailer/InvoiceMailer/invoices
+2025-04-23 17:26:32.719 -05:00 [INF] Found invoice file: Quarterly Report INV54321.pdf with key: INV54321
+2025-04-23 17:26:32.719 -05:00 [INF] Found invoice file: INV12345.pdf with key: INV12345
+2025-04-23 17:26:32.719 -05:00 [INF] Found invoice file: April2025_INV67890.xlsx with key: INV67890
+2025-04-23 17:26:32.719 -05:00 [INF] Found invoice file: invoice_inv09876_lowercase.xlsx with key: inv09876
+2025-04-23 17:26:32.719 -05:00 [INF] Invoice scan completed
+2025-04-23 17:26:32.720 -05:00 [INF] Found 4 invoice files with valid keys
+2025-04-23 17:26:32.720 -05:00 [INF] Found recipient for invoice INV54321: janedoe@example.com
+2025-04-23 17:26:32.720 -05:00 [INF] Found recipient for invoice INV12345: johndoe@example.com
+2025-04-23 17:26:32.720 -05:00 [INF] Found recipient for invoice INV67890: sales@example.com
+2025-04-23 17:26:32.720 -05:00 [WRN] No recipient found for invoice inv09876
+2025-04-23 17:26:32.721 -05:00 [INF] InvoiceMailer application completed successfully
