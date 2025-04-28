@@ -269,3 +269,8 @@
 /Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/obj/Release/net8.0/osx-x64/ref/InvoiceMailerUI.dll
 /Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/README_Mac.txt
 /Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/README_Windows.txt
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/appsettings.json
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/run-invoices.sh
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/run-invoices.bat
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/install-mac.sh
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/osx-x64/install-windows.bat

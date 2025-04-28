@@ -1,4 +1,9 @@
+/Users/troyrhodes/InvoiceMailer/publish/macos/run-invoices.sh
+/Users/troyrhodes/InvoiceMailer/publish/macos/run-invoices.bat
+/Users/troyrhodes/InvoiceMailer/publish/macos/install-mac.sh
+/Users/troyrhodes/InvoiceMailer/publish/macos/install-windows.bat
 /Users/troyrhodes/InvoiceMailer/publish/macos/InvoiceMailerUI
+/Users/troyrhodes/InvoiceMailer/publish/macos/appsettings.json
 /Users/troyrhodes/InvoiceMailer/publish/macos/README_Mac.txt
 /Users/troyrhodes/InvoiceMailer/publish/macos/README_Windows.txt
 /Users/troyrhodes/InvoiceMailer/publish/macos/recipients.csv

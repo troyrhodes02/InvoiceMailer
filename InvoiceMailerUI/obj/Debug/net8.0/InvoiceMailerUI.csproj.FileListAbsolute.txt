@@ -91,3 +91,9 @@
 /Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/obj/Debug/net8.0/InvoiceMailerUI.genruntimeconfig.cache
 /Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/obj/Debug/net8.0/ref/InvoiceMailerUI.dll
 /Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/recipients.csv
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/README_Mac.txt
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/README_Windows.txt
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/run-invoices.sh
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/run-invoices.bat
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/install-mac.sh
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Debug/net8.0/install-windows.bat

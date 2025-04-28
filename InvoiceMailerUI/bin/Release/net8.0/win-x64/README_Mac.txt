@@ -8,10 +8,16 @@ This app lets you send invoice emails automatically using your Microsoft 365 ten
 
 ## How to Set Up:
 
-1. Open the InvoiceMailer folder.
-2. Open Terminal in this folder.
-3. Run:
-   ./run-invoices.sh
+1. Extract the InvoiceMailer-macOS.zip file to a folder on your computer.
+2. Run the installer script first:
+   - Double-click `install-mac.sh`
+   - If prompted, choose "Open" in the security dialog
+   - Alternatively, open Terminal and run: `chmod +x install-mac.sh && ./install-mac.sh`
+
+3. After installation, run the application:
+   - Double-click `run-invoices.sh`
+   - If prompted, choose "Open" in the security dialog
+
 4. On first launch, enter your:
    - TenantId
    - ClientId
@@ -30,3 +36,12 @@ Every time you want to send invoices:
 OR
 - Open Terminal and run:
    ./run-invoices.sh 
+
+---
+
+## What the Installer Does:
+
+The `install-mac.sh` script:
+- Sets executable permissions on required files
+- Removes macOS quarantine restrictions
+- Makes the application ready to run 
