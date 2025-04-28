@@ -1,0 +1,6 @@
+InvoiceKey,Email
+INV001,sales@example.com
+INV002,info@example.com
+INV003,purchases@example.com
+INV004,renewals@example.com
+INV005,helpdesk@example.com 

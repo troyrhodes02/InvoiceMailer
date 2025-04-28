@@ -1,0 +1,5 @@
+/Users/troyrhodes/InvoiceMailer/publish/windows/InvoiceMailerUI.pdb
+/Users/troyrhodes/InvoiceMailer/publish/windows/README_Mac.txt
+/Users/troyrhodes/InvoiceMailer/publish/windows/README_Windows.txt
+/Users/troyrhodes/InvoiceMailer/publish/windows/recipients.csv
+/Users/troyrhodes/InvoiceMailer/publish/windows/InvoiceMailerUI.exe

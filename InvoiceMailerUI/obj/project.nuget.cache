@@ -1,0 +1,152 @@
+{
+  "version": 2,
+  "dgSpecHash": "o0Z7foGyAvM=",
+  "success": true,
+  "projectFilePath": "/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/InvoiceMailerUI.csproj",
+  "expectedPackageFiles": [
+    "/Users/troyrhodes/.nuget/packages/azure.core/1.37.0/azure.core.1.37.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/azure.identity/1.10.4/azure.identity.1.10.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.configuration/9.0.4/microsoft.extensions.configuration.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.4/microsoft.extensions.configuration.abstractions.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.configuration.binder/9.0.4/microsoft.extensions.configuration.binder.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.configuration.fileextensions/9.0.4/microsoft.extensions.configuration.fileextensions.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.configuration.json/9.0.4/microsoft.extensions.configuration.json.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.0/microsoft.extensions.dependencyinjection.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.dependencymodel/9.0.0/microsoft.extensions.dependencymodel.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.diagnostics.abstractions/9.0.0/microsoft.extensions.diagnostics.abstractions.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.fileproviders.abstractions/9.0.4/microsoft.extensions.fileproviders.abstractions.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.fileproviders.physical/9.0.4/microsoft.extensions.fileproviders.physical.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.filesystemglobbing/9.0.4/microsoft.extensions.filesystemglobbing.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.hosting.abstractions/9.0.0/microsoft.extensions.hosting.abstractions.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.logging/9.0.0/microsoft.extensions.logging.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.0/microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.options/9.0.0/microsoft.extensions.options.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.extensions.primitives/9.0.4/microsoft.extensions.primitives.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.graph/5.45.0/microsoft.graph.5.45.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.graph.core/3.1.9/microsoft.graph.core.3.1.9.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identity.client/4.56.0/microsoft.identity.client.4.56.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identity.client.extensions.msal/4.56.0/microsoft.identity.client.extensions.msal.4.56.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identitymodel.abstractions/7.4.1/microsoft.identitymodel.abstractions.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identitymodel.jsonwebtokens/7.4.1/microsoft.identitymodel.jsonwebtokens.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identitymodel.logging/7.4.1/microsoft.identitymodel.logging.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identitymodel.protocols/7.4.1/microsoft.identitymodel.protocols.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/7.4.1/microsoft.identitymodel.protocols.openidconnect.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.identitymodel.tokens/7.4.1/microsoft.identitymodel.tokens.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.abstractions/1.7.12/microsoft.kiota.abstractions.1.7.12.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.authentication.azure/1.1.4/microsoft.kiota.authentication.azure.1.1.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.http.httpclientlibrary/1.3.7/microsoft.kiota.http.httpclientlibrary.1.3.7.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.serialization.form/1.1.5/microsoft.kiota.serialization.form.1.1.5.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.serialization.json/1.1.8/microsoft.kiota.serialization.json.1.1.8.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.serialization.multipart/1.1.3/microsoft.kiota.serialization.multipart.1.1.3.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.kiota.serialization.text/1.1.4/microsoft.kiota.serialization.text.1.1.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog/4.2.0/serilog.4.2.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.enrichers.environment/2.3.0/serilog.enrichers.environment.2.3.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.enrichers.thread/3.1.0/serilog.enrichers.thread.3.1.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.extensions.hosting/9.0.0/serilog.extensions.hosting.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.extensions.logging/9.0.0/serilog.extensions.logging.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.settings.configuration/9.0.0/serilog.settings.configuration.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.sinks.console/5.0.1/serilog.sinks.console.5.0.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/serilog.sinks.file/6.0.0/serilog.sinks.file.6.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/spectre.console/0.48.0/spectre.console.0.48.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/spectre.console.cli/0.48.0/spectre.console.cli.0.48.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/std.uritemplate/0.0.54/std.uritemplate.0.0.54.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.commandline/2.0.0-beta4.22272.1/system.commandline.2.0.0-beta4.22272.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.diagnostics.diagnosticsource/9.0.0/system.diagnostics.diagnosticsource.9.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.identitymodel.tokens.jwt/7.4.1/system.identitymodel.tokens.jwt.7.4.1.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.io.filesystem.accesscontrol/5.0.0/system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.io.pipelines/9.0.4/system.io.pipelines.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.security.accesscontrol/5.0.0/system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.security.cryptography.protecteddata/4.7.0/system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.text.encodings.web/9.0.4/system.text.encodings.web.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.text.json/9.0.4/system.text.json.9.0.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/8.0.15/microsoft.netcore.app.runtime.osx-x64.8.0.15.nupkg.sha512",
+    "/Users/troyrhodes/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/8.0.15/microsoft.aspnetcore.app.runtime.osx-x64.8.0.15.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: Microsoft.Kiota.Abstractions 1.7.12 requires System.Diagnostics.DiagnosticSource (>= 6.0.0 && < 9.0.0) but version System.Diagnostics.DiagnosticSource 9.0.0 was resolved.",
+      "libraryId": "System.Diagnostics.DiagnosticSource",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: Microsoft.Kiota.Authentication.Azure 1.1.4 requires System.Diagnostics.DiagnosticSource (>= 6.0.1 && < 9.0.0) but version System.Diagnostics.DiagnosticSource 9.0.0 was resolved.",
+      "libraryId": "System.Diagnostics.DiagnosticSource",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: Microsoft.Kiota.Http.HttpClientLibrary 1.3.7 requires System.Diagnostics.DiagnosticSource (>= 6.0.0 && < 9.0.0) but version System.Diagnostics.DiagnosticSource 9.0.0 was resolved.",
+      "libraryId": "System.Diagnostics.DiagnosticSource",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: Microsoft.Kiota.Http.HttpClientLibrary 1.3.7 requires System.Text.Json (>= 6.0.0 && < 9.0.0) but version System.Text.Json 9.0.4 was resolved.",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: Microsoft.Kiota.Serialization.Json 1.1.8 requires System.Text.Json (>= 6.0.0 && < 9.0.0) but version System.Text.Json 9.0.4 was resolved.",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Azure.Identity' 1.10.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-m5vv-6r4h-3vj9",
+      "libraryId": "Azure.Identity",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Azure.Identity' 1.10.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-wvxc-855f-jvrv",
+      "libraryId": "Azure.Identity",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/osx-x64"
+      ]
+    }
+  ]
+}
