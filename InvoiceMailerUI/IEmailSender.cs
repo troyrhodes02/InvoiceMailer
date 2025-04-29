@@ -4,6 +4,10 @@ namespace InvoiceMailerUI
 {
     public interface IEmailSender
     {
+        Task<bool> AuthenticateAsync(bool silent = false);
+        string GetUserEmail();
+        void SetSenderEmail(string senderEmail);
+        string GetEffectiveSenderEmail();
         Task SendEmailAsync(
             string toEmail,
             string subject,

@@ -1,0 +1,10 @@
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/InvoiceMailerUI.pdb
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/run-invoices.sh
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/run-invoices.bat
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/install-mac.sh
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/install-windows.bat
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/appsettings.json
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/README_Mac.txt
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/README_Windows.txt
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/recipients.csv
+/Users/troyrhodes/InvoiceMailer/InvoiceMailerUI/bin/Release/net8.0/win-x64/publish/InvoiceMailerUI.exe

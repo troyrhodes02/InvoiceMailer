@@ -14,6 +14,7 @@
           "Microsoft.Extensions.Configuration.Binder": "9.0.4",
           "Microsoft.Extensions.Configuration.Json": "9.0.4",
           "Microsoft.Graph": "5.45.0",
+          "Microsoft.Identity.Client": "4.59.0",
           "Microsoft.NET.ILLink.Tasks": "8.0.15",
           "Serilog": "4.2.0",
           "Serilog.Enrichers.Environment": "2.3.0",
@@ -717,7 +718,7 @@
       "Azure.Identity/1.10.4": {
         "dependencies": {
           "Azure.Core": "1.37.0",
-          "Microsoft.Identity.Client": "4.56.0",
+          "Microsoft.Identity.Client": "4.59.0",
           "Microsoft.Identity.Client.Extensions.Msal": "4.56.0",
           "System.Memory": "4.5.5",
           "System.Security.Cryptography.ProtectedData": "4.7.0",
@@ -968,20 +969,21 @@
           }
         }
       },
-      "Microsoft.Identity.Client/4.56.0": {
+      "Microsoft.Identity.Client/4.59.0": {
         "dependencies": {
-          "Microsoft.IdentityModel.Abstractions": "7.4.1"
+          "Microsoft.IdentityModel.Abstractions": "7.4.1",
+          "System.Diagnostics.DiagnosticSource": "9.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.Identity.Client.dll": {
-            "assemblyVersion": "4.56.0.0",
-            "fileVersion": "4.56.0.0"
+            "assemblyVersion": "4.59.0.0",
+            "fileVersion": "4.59.0.0"
           }
         }
       },
       "Microsoft.Identity.Client.Extensions.Msal/4.56.0": {
         "dependencies": {
-          "Microsoft.Identity.Client": "4.56.0",
+          "Microsoft.Identity.Client": "4.59.0",
           "System.IO.FileSystem.AccessControl": "5.0.0",
           "System.Security.Cryptography.ProtectedData": "4.7.0"
         },
@@ -1574,12 +1576,12 @@
       "path": "microsoft.graph.core/3.1.9",
       "hashPath": "microsoft.graph.core.3.1.9.nupkg.sha512"
     },
-    "Microsoft.Identity.Client/4.56.0": {
+    "Microsoft.Identity.Client/4.59.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rr4zbidvHy9r4NvOAs5hdd964Ao2A0pAeFBJKR95u1CJAVzbd1p6tPTXUZ+5ld0cfThiVSGvz6UHwY6JjraTpA==",
-      "path": "microsoft.identity.client/4.56.0",
-      "hashPath": "microsoft.identity.client.4.56.0.nupkg.sha512"
+      "sha512": "sha512-PbuMAe/h1/WoEqhHwJ4UhmL6pdo1ZxeesWyhKyhSF/S653c0i1XX8DSFLVia+WT1+j3ppqBYFyfrQgwatlaU+Q==",
+      "path": "microsoft.identity.client/4.59.0",
+      "hashPath": "microsoft.identity.client.4.59.0.nupkg.sha512"
     },
     "Microsoft.Identity.Client.Extensions.Msal/4.56.0": {
       "type": "package",

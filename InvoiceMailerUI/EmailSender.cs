@@ -1,31 +1,150 @@
+using Azure.Core;
 using Azure.Identity;
 using Microsoft.Graph;
 using Microsoft.Graph.Models;
 using Microsoft.Graph.Models.ODataErrors;
+using Microsoft.Identity.Client;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InvoiceMailerUI
 {
     public class EmailSender : IEmailSender
     {
-        private readonly GraphServiceClient _graphClient;
-        private readonly string _senderEmail;
+        private GraphServiceClient? _graphClient;
+        private string _userEmail = string.Empty;
+        private string _overrideSenderEmail = string.Empty;
+        private readonly string _tenantId;
+        private readonly string _clientId;
+        private readonly string[] _scopes = new string[] { "Mail.Send", "Mail.ReadWrite", "User.Read" };
+        private IPublicClientApplication? _msalClient;
 
-        public EmailSender(string tenantId, string clientId, string clientSecret, string senderEmail)
+        public EmailSender(string tenantId, string clientId)
         {
-            // Create the client credentials
-            var clientSecretCredential = new ClientSecretCredential(
-                tenantId,
-                clientId,
-                clientSecret);
+            _tenantId = tenantId;
+            _clientId = clientId;
+        }
 
-            // Initialize the Graph client
-            _graphClient = new GraphServiceClient(clientSecretCredential, 
-                new[] { "https://graph.microsoft.com/.default" });
+        /// <summary>
+        /// Set an override sender email address
+        /// </summary>
+        public void SetSenderEmail(string senderEmail)
+        {
+            _overrideSenderEmail = senderEmail;
+        }
+
+        /// <summary>
+        /// Get the effective sender email (override if set, otherwise authenticated user email)
+        /// </summary>
+        public string GetEffectiveSenderEmail()
+        {
+            return !string.IsNullOrEmpty(_overrideSenderEmail) ? _overrideSenderEmail : _userEmail;
+        }
+
+        /// <summary>
+        /// Authenticate the user interactively using MSAL.NET and Azure.Identity
+        /// </summary>
+        public async Task<bool> AuthenticateAsync(bool silent = false)
+        {
+            try
+            {
+                // Initialize MSAL client application
+                _msalClient = PublicClientApplicationBuilder
+                    .Create(_clientId)
+                    .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
+                    .WithRedirectUri("http://localhost")
+                    .Build();
+
+                // Create the interactive browser credential options
+                var options = new InteractiveBrowserCredentialOptions
+                {
+                    TenantId = _tenantId,
+                    ClientId = _clientId,
+                    RedirectUri = new Uri("http://localhost")
+                };
+
+                TokenCredential credential;
                 
-            // Store the sender email
-            _senderEmail = senderEmail;
+                if (silent)
+                {
+                    try
+                    {
+                        // Try silent authentication first
+                        var accounts = await _msalClient.GetAccountsAsync();
+                        var firstAccount = accounts.FirstOrDefault();
+                        
+                        if (firstAccount != null)
+                        {
+                            // Use DefaultAzureCredential which attempts silent auth methods
+                            var defaultOptions = new DefaultAzureCredentialOptions
+                            {
+                                TenantId = _tenantId,
+                                ExcludeInteractiveBrowserCredential = true
+                            };
+                            credential = new DefaultAzureCredential(defaultOptions);
+                            
+                            // Validate the credential can get a token
+                            var tokenRequestContext = new TokenRequestContext(_scopes);
+                            await credential.GetTokenAsync(tokenRequestContext, CancellationToken.None);
+                        }
+                        else
+                        {
+                            // No cached account, return failure for silent auth
+                            return false;
+                        }
+                    }
+                    catch
+                    {
+                        // If silent auth is required but fails, return failure
+                        if (silent)
+                        {
+                            return false;
+                        }
+                        
+                        // Otherwise fall back to interactive
+                        credential = new InteractiveBrowserCredential(options);
+                    }
+                }
+                else
+                {
+                    // Use interactive browser when silent auth is not required
+                    credential = new InteractiveBrowserCredential(options);
+                }
+
+                // Create a Graph client with the credential
+                _graphClient = new GraphServiceClient(credential, _scopes);
+
+                // Get user profile information to set email
+                var user = await _graphClient.Me.GetAsync();
+                if (user?.Mail != null)
+                {
+                    _userEmail = user.Mail;
+                }
+                else if (user?.UserPrincipalName != null)
+                {
+                    _userEmail = user.UserPrincipalName;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unable to retrieve user email");
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Authentication failed: {ex.Message}");
+                return false;
+            }
+        }
+
+        public string GetUserEmail()
+        {
+            return _userEmail;
         }
 
         public async Task SendEmailAsync(
@@ -34,6 +153,12 @@ namespace InvoiceMailerUI
             string bodyText,
             string? attachmentPath = null)
         {
+            // Ensure we're authenticated first
+            if (_graphClient == null)
+            {
+                throw new InvalidOperationException("Not authenticated. Call AuthenticateAsync before sending emails.");
+            }
+
             // Create the message
             var message = new Message
             {
@@ -52,16 +177,21 @@ namespace InvoiceMailerUI
                             Address = toEmail
                         }
                     }
-                },
-                // Explicitly set the sender
-                From = new Recipient
+                }
+                // From address is set automatically to the authenticated user
+            };
+
+            // If we have an override sender, set it explicitly
+            if (!string.IsNullOrEmpty(_overrideSenderEmail))
+            {
+                message.From = new Recipient
                 {
                     EmailAddress = new EmailAddress
                     {
-                        Address = _senderEmail
+                        Address = _overrideSenderEmail
                     }
-                }
-            };
+                };
+            }
 
             // Add attachment if path is provided and file exists
             if (!string.IsNullOrEmpty(attachmentPath) && File.Exists(attachmentPath))
@@ -82,7 +212,7 @@ namespace InvoiceMailerUI
             }
 
             // Create the message request
-            var requestBody = new Microsoft.Graph.Users.Item.SendMail.SendMailPostRequestBody
+            var requestBody = new Microsoft.Graph.Me.SendMail.SendMailPostRequestBody
             {
                 Message = message,
                 SaveToSentItems = true
@@ -90,17 +220,14 @@ namespace InvoiceMailerUI
 
             try
             {
-                // Try to send using the shared mailbox approach (if available)
-                await _graphClient.Users[_senderEmail].SendMail.PostAsync(requestBody);
+                // Send mail using the authenticated user's context
+                await _graphClient.Me.SendMail.PostAsync(requestBody);
             }
-            catch (ODataError ex) when (ex.Error?.Message?.Contains("Access is denied") == true)
+            catch (ODataError ex)
             {
-                // If access denied, try alternative approach
-                // Note: This may require additional permissions in Azure AD
-                // and might not work depending on your tenant configuration
                 throw new InvalidOperationException(
-                    "Email sending failed. The application doesn't have permission to send mail as this user. " +
-                    "Please ask your Azure AD administrator to grant the application the necessary permissions.", ex);
+                    $"Email sending failed: {ex.Error?.Message}. " +
+                    "Make sure your account has the necessary permissions.", ex);
             }
         }
     }
