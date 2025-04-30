@@ -169,6 +169,9 @@ namespace InvoiceMailerUI
             // Dynamically load the Windows Forms assembly
             try
             {
+                // Log the filter for debugging
+                AnsiConsole.MarkupLine($"[grey]Windows file filter: {filter}[/]");
+                
                 // Import the required reference
                 var assembly = System.Reflection.Assembly.Load("System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089");
                 
@@ -313,23 +316,35 @@ namespace InvoiceMailerUI
             string fileTypes = string.Empty;
             if (filter.Contains("*."))
             {
-                // Parse the filter string (e.g., "CSV Files (*.csv)|*.csv")
-                var parts = filter.Split('|');
-                for (int i = 0; i < parts.Length; i++)
+                // Parse the filter string (e.g., "CSV Files (*.csv)|*.csv" or "Excel Files (*.xlsx;*.xls)|*.xlsx;*.xls")
+                var filterParts = filter.Split('|');
+                if (filterParts.Length > 1)
                 {
-                    string part = parts[i];
-                    if (part.StartsWith("*."))
+                    // Get the pattern part (e.g., "*.xlsx;*.xls")
+                    string extensionPattern = filterParts[1];
+                    // Split by semicolon for multiple extensions
+                    var extensionPatterns = extensionPattern.Split(';');
+                    
+                    foreach (var pattern in extensionPatterns)
                     {
-                        fileTypes += $"\"{part.Substring(2)}\","; // Extract "csv" from "*.csv"
+                        if (pattern.StartsWith("*."))
+                        {
+                            string extension = pattern.Substring(2);
+                            fileTypes += $"\"{extension}\",";
+                        }
+                    }
+                    
+                    // Remove trailing comma
+                    if (fileTypes.EndsWith(","))
+                    {
+                        fileTypes = fileTypes.Substring(0, fileTypes.Length - 1);
                     }
                 }
-                
-                // Remove trailing comma
-                if (fileTypes.EndsWith(","))
-                {
-                    fileTypes = fileTypes.Substring(0, fileTypes.Length - 1);
-                }
             }
+            
+            // Debugging filter extraction
+            AnsiConsole.MarkupLine($"[grey]File filter: {filter}[/]");
+            AnsiConsole.MarkupLine($"[grey]Extracted file types: {fileTypes}[/]");
             
             // Create a temporary file to store the selected path
             string tempFile = Path.Combine(Path.GetTempPath(), $"file_select_{Guid.NewGuid()}.txt");

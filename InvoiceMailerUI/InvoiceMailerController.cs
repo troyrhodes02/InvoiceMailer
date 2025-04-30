@@ -329,6 +329,10 @@ namespace InvoiceMailerUI
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 await File.WriteAllTextAsync(appSettingsPath, configRoot.ToJsonString(options));
                 
+                // Reload configuration after saving
+                LoadConfiguration();
+                Log("Configuration reloaded from disk.", LogLevel.Info);
+                
                 Log("Configuration saved successfully from setup wizard", LogLevel.Success);
                 return true;
             }
@@ -558,7 +562,8 @@ namespace InvoiceMailerUI
         /// Save configuration to appsettings.json
         /// </summary>
         public bool SaveConfiguration(bool testMode, string tenantId, string clientId, string defaultSenderEmail = "", 
-            string? invoicesFolderPath = null, string? recipientsFilePath = null, string? invoiceKeyPattern = null)
+            string? invoicesFolderPath = null, string? recipientsFilePath = null, string? invoiceKeyPattern = null,
+            bool useExcelForRecipients = false)
         {
             Log("Saving configuration...", LogLevel.Info);
             
@@ -646,6 +651,20 @@ namespace InvoiceMailerUI
                         
                         recipientsSection["CsvPath"] = path;
                         Log($"Updated recipients file path to: {path}", LogLevel.Info);
+                        
+                        // If using Excel, update the Excel path as well
+                        if (useExcelForRecipients && path.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+                        {
+                            recipientsSection["ExcelPath"] = path;
+                            Log($"Updated Excel recipients file path to: {path}", LogLevel.Info);
+                        }
+                        else if (useExcelForRecipients)
+                        {
+                            // Convert CSV path to Excel path if needed
+                            string excelPath = Path.ChangeExtension(path, ".xlsx");
+                            recipientsSection["ExcelPath"] = excelPath;
+                            Log($"Updated Excel recipients file path to: {excelPath}", LogLevel.Info);
+                        }
                     }
                     
                     // Save the updated configuration

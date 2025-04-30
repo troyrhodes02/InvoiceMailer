@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Microsoft.Extensions.Configuration;
+using ClosedXML.Excel;
 
 namespace InvoiceMailerUI
 {
@@ -559,7 +560,8 @@ namespace InvoiceMailerUI
                 "• [green]Default Sender Email[/]: Optional override for the sender email address\n\n" +
                 "[underline]File Path Settings:[/]\n" +
                 "• [green]Invoices Folder Path[/]: Where to look for invoice files\n" +
-                "• [green]Recipients CSV File Path[/]: The CSV file containing recipient information\n\n" +
+                "• [green]Recipients File Path[/]: The Excel or CSV file containing recipient information\n" +
+                "  (Excel format provides a more user-friendly experience for editing recipient data)\n\n" +
                 "[underline]Scanner Settings:[/]\n" +
                 "• [green]Invoice Key Pattern[/]: The regex pattern used to extract invoice keys from filenames\n" +
                 "  (e.g., 'INV\\d+' extracts 'INV12345' from a filename like 'INV12345-March2023.pdf')\n\n" +
@@ -660,6 +662,7 @@ namespace InvoiceMailerUI
             bool createRecipientsParentDir = false;
             bool createRecipientsFile = false;
             string? recipientsParentDir = null;
+            bool useExcelForRecipients = false;
             
             // Email and authentication settings
             bool testMode = configuration.GetValue<bool>("Email:TestMode");
@@ -806,7 +809,8 @@ namespace InvoiceMailerUI
                             .Title("How would you like to set the path?")
                             .PageSize(4)
                             .AddChoices(
-                                "Browse for file",
+                                "Browse for Excel file",
+                                "Browse for CSV file",
                                 "Enter path manually",
                                 "Reset to default",
                                 "Cancel"
@@ -816,7 +820,35 @@ namespace InvoiceMailerUI
                     {
                         // Skip this setting and continue
                     }
-                    else if (pathMode == "Browse for file")
+                    else if (pathMode == "Browse for Excel file")
+                    {
+                        var selectedFile = NativeFileBrowser.BrowseForFile(
+                            "Select Recipients Excel File",
+                            "Excel Files (*.xlsx;*.xls)|*.xlsx;*.xls", 
+                            Path.GetDirectoryName(currentRecipientsPath));
+                        
+                        if (selectedFile != null)
+                        {
+                            recipientsFilePath = selectedFile;
+                            AnsiConsole.MarkupLine($"[green]New recipients Excel file set to: {recipientsFilePath}[/]");
+                            savingRequired = true;
+                            useExcelForRecipients = true;
+                            
+                            // Check if file exists and get confirmation if needed
+                            if (!File.Exists(recipientsFilePath))
+                    {
+                                createRecipientsFile = AnsiConsole.Confirm($"File '{recipientsFilePath}' does not exist. Create an empty Excel file?", true);
+                                
+                                // Check if parent directory exists
+                                recipientsParentDir = Path.GetDirectoryName(recipientsFilePath);
+                                if (!string.IsNullOrEmpty(recipientsParentDir) && !Directory.Exists(recipientsParentDir))
+                                {
+                                    createRecipientsParentDir = AnsiConsole.Confirm($"Directory '{recipientsParentDir}' does not exist. Create it?", true);
+                                }
+                            }
+                        }
+                    }
+                    else if (pathMode == "Browse for CSV file")
                     {
                             var selectedFile = NativeFileBrowser.BrowseForFile(
                                 "Select Recipients CSV File",
@@ -826,8 +858,9 @@ namespace InvoiceMailerUI
                             if (selectedFile != null)
                             {
                                 recipientsFilePath = selectedFile;
-                                AnsiConsole.MarkupLine($"[green]New recipients file set to: {recipientsFilePath}[/]");
+                            AnsiConsole.MarkupLine($"[green]New recipients CSV file set to: {recipientsFilePath}[/]");
                                 savingRequired = true;
+                            useExcelForRecipients = false;
                             
                             // Check if file exists and get confirmation if needed
                             if (!File.Exists(recipientsFilePath))
@@ -1010,8 +1043,32 @@ namespace InvoiceMailerUI
                             ctx.Status($"Creating file: {recipientsFilePath}");
                             try
                             {
-                                File.WriteAllText(recipientsFilePath, "InvoiceKey,Email\n");
-                                _logEntries.Add(($"Created empty CSV file with header: {recipientsFilePath}", InvoiceMailerController.LogLevel.Success));
+                                if (useExcelForRecipients)
+                                {
+                                    // Create Excel file with headers
+                                    using var workbook = new ClosedXML.Excel.XLWorkbook();
+                                    var worksheet = workbook.Worksheets.Add("Recipients");
+                                    
+                                    // Add headers
+                                    worksheet.Cell("A1").Value = "InvoiceKey";
+                                    worksheet.Cell("B1").Value = "Email";
+                                    
+                                    // Format headers
+                                    worksheet.Range("A1:B1").Style.Font.Bold = true;
+                                    worksheet.Range("A1:B1").Style.Fill.BackgroundColor = ClosedXML.Excel.XLColor.LightGray;
+                                    
+                                    // Auto-fit columns
+                                    worksheet.Columns().AdjustToContents();
+                                    
+                                    // Save the workbook
+                                    workbook.SaveAs(recipientsFilePath);
+                                    _logEntries.Add(($"Created empty Excel file with headers: {recipientsFilePath}", InvoiceMailerController.LogLevel.Success));
+                                }
+                                else
+                                {
+                                    File.WriteAllText(recipientsFilePath, "InvoiceKey,Email\n");
+                                    _logEntries.Add(($"Created empty CSV file with header: {recipientsFilePath}", InvoiceMailerController.LogLevel.Success));
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -1028,7 +1085,8 @@ namespace InvoiceMailerUI
                         defaultSenderEmail,
                         invoicesFolderPath,
                             recipientsFilePath,
-                            invoiceKeyPattern);
+                            invoiceKeyPattern,
+                            useExcelForRecipients);
                     
                     if (success)
                     {

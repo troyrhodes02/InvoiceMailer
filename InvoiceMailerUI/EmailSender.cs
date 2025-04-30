@@ -198,6 +198,7 @@ namespace InvoiceMailerUI
             {
                 var fileBytes = await File.ReadAllBytesAsync(attachmentPath);
                 var fileName = Path.GetFileName(attachmentPath);
+                var contentType = GetContentType(fileName);
 
                 message.Attachments = new List<Attachment>
                 {
@@ -205,7 +206,7 @@ namespace InvoiceMailerUI
                     {
                         OdataType = "#microsoft.graph.fileAttachment",
                         ContentBytes = fileBytes,
-                        ContentType = "application/pdf", // Assuming PDF, adjust if needed
+                        ContentType = contentType,
                         Name = fileName
                     }
                 };
@@ -229,6 +230,23 @@ namespace InvoiceMailerUI
                     $"Email sending failed: {ex.Error?.Message}. " +
                     "Make sure your account has the necessary permissions.", ex);
             }
+        }
+
+        // Helper method to determine the content type based on file extension
+        private string GetContentType(string fileName)
+        {
+            string extension = Path.GetExtension(fileName).ToLowerInvariant();
+            
+            return extension switch
+            {
+                ".pdf" => "application/pdf",
+                ".xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                ".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                ".jpg" => "image/jpeg",
+                ".jpeg" => "image/jpeg",
+                ".png" => "image/png",
+                _ => "application/octet-stream"
+            };
         }
     }
 } 
