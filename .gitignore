@@ -1,5 +1,3 @@
-publish/windows/InvoiceMailerUI.exe
-publish/macos/InvoiceMailerUI
-publish/linux/InvoiceMailerUI
 *.exe
 */publish/InvoiceMailerUI
+*/bin/Release/**/publish/InvoiceMailerUI
