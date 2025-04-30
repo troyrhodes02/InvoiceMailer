@@ -146,30 +146,12 @@ namespace InvoiceMailerUI
                         ? ValidationResult.Error("[red]The Client ID cannot be empty[/]") 
                         : ValidationResult.Success()));
             
-            // Get current or default invoice pattern
-            string currentPattern = _configuration.GetValue<string>("InvoiceScanner:DefaultPattern") ?? @"INV\d+";
+            // Default invoice pattern - no longer customizable at startup
+            string wizardInvoicePattern = @"INV\d+";
             
-            string wizardInvoicePattern = AnsiConsole.Prompt(
-                new TextPrompt<string>($"Enter the invoice key pattern (e.g. INV\\d+, INVOICE_\\d{{4}}, etc):")
-                    .DefaultValue(currentPattern)
-                    .PromptStyle("green")
-                    .ValidationErrorMessage("[red]Invalid regular expression pattern[/]")
-                    .Validate(pattern => 
-                    {
-                        if (string.IsNullOrWhiteSpace(pattern))
-                            return ValidationResult.Error("[red]The pattern cannot be empty[/]");
-                            
-                        // Test if it's a valid regex pattern
-                        try 
-                        {
-                            var _ = new System.Text.RegularExpressions.Regex(pattern);
-                            return ValidationResult.Success();
-                        }
-                        catch (Exception)
-                        {
-                            return ValidationResult.Error("[red]Invalid regular expression pattern[/]");
-                        }
-                    }));
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine($"[cyan]Note:[/] The default invoice key pattern '[yellow]{wizardInvoicePattern}[/]' will be used.");
+            AnsiConsole.MarkupLine("[cyan]You can change this later in Scanner Settings.[/]");
             
             AnsiConsole.WriteLine();
             
@@ -215,7 +197,7 @@ namespace InvoiceMailerUI
         /// <summary>
         /// Save configuration settings from the setup wizard
         /// </summary>
-        private async Task<bool> SaveSetupConfiguration(string wizardTenantId, string wizardClientId, string invoiceKeyPattern = "INV\\d+")
+        private async Task<bool> SaveSetupConfiguration(string wizardTenantId, string wizardClientId, string invoiceKeyPattern)
         {
             Log("Saving configuration from setup wizard...", LogLevel.Info);
             
