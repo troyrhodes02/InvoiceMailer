@@ -861,7 +861,7 @@ namespace InvoiceMailerUI
                         // Check parent directory and file (don't create yet, just mark for creation later)
                         recipientsParentDir = Path.GetDirectoryName(recipientsFilePath);
                         if (!string.IsNullOrEmpty(recipientsParentDir) && !Directory.Exists(recipientsParentDir))
-                        {
+                            {
                             createRecipientsParentDir = AnsiConsole.Confirm($"Directory '{recipientsParentDir}' does not exist. Create it?", true);
                         }
                         
@@ -885,7 +885,7 @@ namespace InvoiceMailerUI
                 }
             }
             else if (settingGroup == "Scanner Settings")
-            {
+                                    {
                 AnsiConsole.WriteLine();
                 AnsiConsole.Write(new Rule("[yellow]Scanner Settings[/]").RuleStyle("grey").Centered());
                 AnsiConsole.WriteLine();
@@ -923,8 +923,8 @@ namespace InvoiceMailerUI
                                     return ValidationResult.Error("Pattern cannot be empty");
                                 
                                 // Test if it's a valid regex pattern
-                                try 
-                                {
+                                    try
+                                    {
                                     var _ = new System.Text.RegularExpressions.Regex(pattern);
                                     return ValidationResult.Success();
                                 }
@@ -988,8 +988,8 @@ namespace InvoiceMailerUI
                                     catch (Exception ex)
                                     {
                                 _logEntries.Add(($"Error creating directory: {ex.Message}", InvoiceMailerController.LogLevel.Error));
-                            }
-                        }
+                                    }
+                                }
                         
                         if (createRecipientsParentDir && recipientsParentDir != null)
                         {
@@ -1002,11 +1002,11 @@ namespace InvoiceMailerUI
                             catch (Exception ex)
                             {
                                 _logEntries.Add(($"Error creating directory: {ex.Message}", InvoiceMailerController.LogLevel.Error));
-                            }
-                        }
-                        
+                }
+            }
+
                         if (createRecipientsFile && recipientsFilePath != null)
-                        {
+            {
                             ctx.Status($"Creating file: {recipientsFilePath}");
                             try
                             {
@@ -1055,8 +1055,8 @@ namespace InvoiceMailerUI
                         _ => "blue"
                     };
                     AnsiConsole.MarkupLine($"[{color}]{entry.Message}[/]");
+                    }
                 }
-            }
             else if (savingRequired)
                 {
                     AnsiConsole.MarkupLine("[yellow]Settings were not saved.[/]");
