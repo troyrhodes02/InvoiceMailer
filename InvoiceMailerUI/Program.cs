@@ -744,15 +744,15 @@ namespace InvoiceMailerUI
                     }
                     else if (pathMode == "Browse for folder")
                     {
-                        var selectedFolder = NativeFileBrowser.BrowseForFolder(
-                            "Select Invoices Folder", 
-                            currentInvoicesPath);
-                        
-                        if (selectedFolder != null)
-                        {
-                            invoicesFolderPath = selectedFolder;
-                            AnsiConsole.MarkupLine($"[green]New invoices folder set to: {invoicesFolderPath}[/]");
-                            savingRequired = true;
+                            var selectedFolder = NativeFileBrowser.BrowseForFolder(
+                                "Select Invoices Folder", 
+                                currentInvoicesPath);
+                            
+                            if (selectedFolder != null)
+                            {
+                                invoicesFolderPath = selectedFolder;
+                                AnsiConsole.MarkupLine($"[green]New invoices folder set to: {invoicesFolderPath}[/]");
+                                savingRequired = true;
                             
                             // Check if directory exists and get confirmation if needed
                             if (!Directory.Exists(invoicesFolderPath))
@@ -763,30 +763,30 @@ namespace InvoiceMailerUI
                     }
                     else if (pathMode == "Enter path manually")
                     {
-                        var enteredPath = AnsiConsole.Prompt(
-                            new TextPrompt<string>("Enter the invoices folder path:")
-                                .DefaultValue(currentInvoicesPath)
-                                .Validate(path =>
-                                {
-                                    if (string.IsNullOrWhiteSpace(path))
-                                        return ValidationResult.Error("Path cannot be empty");
-                                    return ValidationResult.Success();
-                                }));
-                        
-                        invoicesFolderPath = enteredPath;
-                        savingRequired = true;
-                        
+                            var enteredPath = AnsiConsole.Prompt(
+                                new TextPrompt<string>("Enter the invoices folder path:")
+                                    .DefaultValue(currentInvoicesPath)
+                                    .Validate(path =>
+                                    {
+                                        if (string.IsNullOrWhiteSpace(path))
+                                            return ValidationResult.Error("Path cannot be empty");
+                                        return ValidationResult.Success();
+                                    }));
+                            
+                            invoicesFolderPath = enteredPath;
+                            savingRequired = true;
+                            
                         // Check if directory exists and get confirmation if needed
-                        if (!Directory.Exists(invoicesFolderPath))
-                        {
+                            if (!Directory.Exists(invoicesFolderPath))
+                            {
                             createInvoicesFolder = AnsiConsole.Confirm($"Directory '{invoicesFolderPath}' does not exist. Create it?", true);
                         }
                     }
                     else if (pathMode == "Reset to default")
                     {
-                        invoicesFolderPath = "invoices";
-                        AnsiConsole.MarkupLine("[green]Reset invoices folder to default: 'invoices'[/]");
-                        savingRequired = true;
+                            invoicesFolderPath = "invoices";
+                            AnsiConsole.MarkupLine("[green]Reset invoices folder to default: 'invoices'[/]");
+                            savingRequired = true;
                         
                         // Check if default directory exists and get confirmation if needed
                         if (!Directory.Exists(invoicesFolderPath))
@@ -818,16 +818,16 @@ namespace InvoiceMailerUI
                     }
                     else if (pathMode == "Browse for file")
                     {
-                        var selectedFile = NativeFileBrowser.BrowseForFile(
-                            "Select Recipients CSV File",
-                            "CSV Files (*.csv)|*.csv", 
-                            Path.GetDirectoryName(currentRecipientsPath));
-                        
-                        if (selectedFile != null)
-                        {
-                            recipientsFilePath = selectedFile;
-                            AnsiConsole.MarkupLine($"[green]New recipients file set to: {recipientsFilePath}[/]");
-                            savingRequired = true;
+                            var selectedFile = NativeFileBrowser.BrowseForFile(
+                                "Select Recipients CSV File",
+                                "CSV Files (*.csv)|*.csv", 
+                                Path.GetDirectoryName(currentRecipientsPath));
+                            
+                            if (selectedFile != null)
+                            {
+                                recipientsFilePath = selectedFile;
+                                AnsiConsole.MarkupLine($"[green]New recipients file set to: {recipientsFilePath}[/]");
+                                savingRequired = true;
                             
                             // Check if file exists and get confirmation if needed
                             if (!File.Exists(recipientsFilePath))
@@ -845,19 +845,19 @@ namespace InvoiceMailerUI
                     }
                     else if (pathMode == "Enter path manually")
                     {
-                        var enteredPath = AnsiConsole.Prompt(
-                            new TextPrompt<string>("Enter the recipients file path:")
-                                .DefaultValue(currentRecipientsPath)
-                                .Validate(path =>
-                                {
-                                    if (string.IsNullOrWhiteSpace(path))
-                                        return ValidationResult.Error("Path cannot be empty");
-                                    return ValidationResult.Success();
-                                }));
-                        
-                        recipientsFilePath = enteredPath;
-                        savingRequired = true;
-                        
+                            var enteredPath = AnsiConsole.Prompt(
+                                new TextPrompt<string>("Enter the recipients file path:")
+                                    .DefaultValue(currentRecipientsPath)
+                                    .Validate(path =>
+                                    {
+                                        if (string.IsNullOrWhiteSpace(path))
+                                            return ValidationResult.Error("Path cannot be empty");
+                                        return ValidationResult.Success();
+                                    }));
+                            
+                            recipientsFilePath = enteredPath;
+                            savingRequired = true;
+                            
                         // Check parent directory and file (don't create yet, just mark for creation later)
                         recipientsParentDir = Path.GetDirectoryName(recipientsFilePath);
                         if (!string.IsNullOrEmpty(recipientsParentDir) && !Directory.Exists(recipientsParentDir))
@@ -984,9 +984,9 @@ namespace InvoiceMailerUI
                             {
                                 Directory.CreateDirectory(invoicesFolderPath);
                                 _logEntries.Add(($"Created directory: {invoicesFolderPath}", InvoiceMailerController.LogLevel.Success));
-                            }
-                            catch (Exception ex)
-                            {
+                                    }
+                                    catch (Exception ex)
+                                    {
                                 _logEntries.Add(($"Error creating directory: {ex.Message}", InvoiceMailerController.LogLevel.Error));
                             }
                         }
@@ -1022,20 +1022,20 @@ namespace InvoiceMailerUI
                         // Save configuration
                         ctx.Status("Saving configuration to appsettings.json");
                         success = _controller.SaveConfiguration(
-                            testMode, 
-                            tenantId, 
-                            clientId, 
-                            defaultSenderEmail,
-                            invoicesFolderPath,
+                        testMode, 
+                        tenantId, 
+                        clientId, 
+                        defaultSenderEmail,
+                        invoicesFolderPath,
                             recipientsFilePath,
                             invoiceKeyPattern);
-                        
-                        if (success)
-                        {
+                    
+                    if (success)
+                    {
                             _logEntries.Add(("Settings saved successfully!", InvoiceMailerController.LogLevel.Success));
-                        }
-                        else
-                        {
+                    }
+                    else
+                    {
                             _logEntries.Add(("Failed to save settings.", InvoiceMailerController.LogLevel.Error));
                         }
                     });
@@ -1058,8 +1058,8 @@ namespace InvoiceMailerUI
                 }
             }
             else if (savingRequired)
-            {
-                AnsiConsole.MarkupLine("[yellow]Settings were not saved.[/]");
+                {
+                    AnsiConsole.MarkupLine("[yellow]Settings were not saved.[/]");
             }
             else
             {
