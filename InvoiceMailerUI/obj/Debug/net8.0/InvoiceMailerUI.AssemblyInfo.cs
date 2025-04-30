@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InvoiceMailerUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16bc06c096ae131cc082922b3bd6a849a683d095")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41eb8ff51c9847eae4c84042f0b8a2f861c830e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("InvoiceMailerUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InvoiceMailerUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

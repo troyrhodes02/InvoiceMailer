@@ -890,6 +890,20 @@ namespace InvoiceMailerUI
                 AnsiConsole.Write(new Rule("[yellow]Scanner Settings[/]").RuleStyle("grey").Centered());
                 AnsiConsole.WriteLine();
                 
+                // Add information panel about invoice key patterns
+                AnsiConsole.Write(new Panel(
+                    "[bold]Invoice Key Pattern[/]\n\n" +
+                    "This setting controls the regular expression pattern used to extract invoice keys from filenames.\n\n" +
+                    "[green]Examples:[/]\n" +
+                    "• [yellow]INV\\d+[/] - Matches 'INV' followed by one or more digits (e.g., INV12345)\n" +
+                    "• [yellow]INVOICE_\\d{4}[/] - Matches 'INVOICE_' followed by exactly 4 digits\n" +
+                    "• [yellow]\\d{5}[/] - Matches any 5-digit number\n" +
+                    "• [yellow]PR-\\d+-\\d+[/] - Matches patterns like 'PR-123-456'\n\n" +
+                    "The matched text will be used to look up recipient email addresses in the CSV file."
+                ).Border(BoxBorder.Rounded).Padding(1, 1));
+                
+                AnsiConsole.WriteLine();
+                
                 // Get current scanner settings
                 string currentInvoiceKeyPattern = _controller.GetInvoiceKeyPattern();
                 
